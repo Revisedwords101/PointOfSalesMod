@@ -1,0 +1,13 @@
+{
+  "itemGroup.posdelight": "Example Mod Tab",
+  "block.posdelight.example_block": "Example Block",
+  "item.posdelight.example_item": "Example Item",
+
+  "posdelight.configuration.title": "POS Delight Configs",
+  "posdelight.configuration.section.posdelight.common.toml": "POS Delight Configs",
+  "posdelight.configuration.section.posdelight.common.toml.title": "POS Delight Configs",
+  "posdelight.configuration.items": "Item List",
+  "posdelight.configuration.logDirtBlock": "Log Dirt Block",
+  "posdelight.configuration.magicNumberIntroduction": "Magic Number Text",
+  "posdelight.configuration.magicNumber": "Magic Number"
+}
