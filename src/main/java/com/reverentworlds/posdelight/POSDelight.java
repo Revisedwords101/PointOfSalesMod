@@ -1,9 +1,8 @@
 package com.reverentworlds.posdelight;
 
-import org.slf4j.Logger;
-
 import com.mojang.logging.LogUtils;
-
+import com.reverentworlds.posdelight.block.CashRegisterBlock;
+import com.reverentworlds.posdelight.block.CashRegisterBlockItem;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -14,14 +13,14 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -30,6 +29,10 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.slf4j.Logger;
+
+// Insert custom blocks/item imports here
+
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(POSDelight.MODID)
@@ -45,10 +48,18 @@ public class POSDelight {
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "posdelight" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    // Creates a new Block with the id "posdelight:example_block", combining the namespace and path
+    // INSERT CUSTOM BLOCKS HERE : Creates a new Block with the id "posdelight:example_block", combining the namespace and path
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", BlockBehaviour.Properties.of().mapColor(MapColor.STONE));
-    // Creates a new BlockItem with the id "posdelight:example_block", combining the namespace and path
+    public static final DeferredBlock<CashRegisterBlock> CASH_REGISTER = BLOCKS.register("cash_register",
+            () -> new CashRegisterBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()));
+
+    // INSERT CUSTOM ITEMS HERE : Creates a new BlockItem with the id "posdelight:example_block", combining the namespace and path
     public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
+    public static final DeferredItem<CashRegisterBlockItem> CASH_REGISTER_ITEM = ITEMS.register("cash_register",
+            () -> new CashRegisterBlockItem(CASH_REGISTER.get(), new Item.Properties()));
 
     // Creates a new food item with the id "posdelight:example_id", nutrition 1 and saturation 2
     public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
@@ -105,6 +116,9 @@ public class POSDelight {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(EXAMPLE_BLOCK_ITEM);
+        }
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(CASH_REGISTER_ITEM);
         }
     }
 

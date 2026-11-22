@@ -1,8 +1,8 @@
 {
-  "itemGroup.posdelight": "Example Mod Tab",
+  "itemGroup.posdelight": "Point of Sales Mod",
   "block.posdelight.example_block": "Example Block",
+  "block.posdelight.cash_register": "Cash Register",
   "item.posdelight.example_item": "Example Item",
-
   "posdelight.configuration.title": "POS Delight Configs",
   "posdelight.configuration.section.posdelight.common.toml": "POS Delight Configs",
   "posdelight.configuration.section.posdelight.common.toml.title": "POS Delight Configs",

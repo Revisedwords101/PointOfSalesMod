@@ -14,6 +14,38 @@ tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
 
+
+version = mod_version
+
+tasks.register('incrementModVersion') {
+    outputs.upToDateWhen { false }
+    def propsFile = layout.projectDirectory.file('gradle.properties').asFile
+
+    doLast {
+        if (propsFile.exists()) {
+            def content = propsFile.getText('UTF-8')
+            // Matches "mod_version=1.0.0" -> group(1) is "1.0.", group(2) is "0"
+            def matcher = (content =~ /(?m)^mod_version=(.*?)(\d+)\s*$/)
+            if (matcher.find()) {
+                def prefix = matcher.group(1)
+                def nextPatch = matcher.group(2).toInteger() + 1
+                def newVersion = "${prefix}${nextPatch}"
+
+                content = content.replaceFirst(/(?m)^mod_version=.*$/, "mod_version=${newVersion}")
+                propsFile.write(content, 'UTF-8')
+                logger.lifecycle("Will auto-bump next mod_version to: ${newVersion}")
+            } else {
+                logger.warn("Could not find a valid 'mod_version=X.Y.Z' in gradle.properties!")
+            }
+        }
+    }
+}
+
+// Run after resources/jar are built so the version increments for the next build
+tasks.named('processResources') {
+    finalizedBy('incrementModVersion')
+}
+
 version = mod_version
 group = mod_group_id
 

@@ -24,6 +24,6 @@ C:\\Users\\andre\\.gradle\\caches\\neoformruntime\\assets
 posdelight
 --all
 --output
-"C:\\Users\\andre\\OneDrive\\Documents\\Github Repos\\src\\generated\\resources"
+C:\\Users\\andre\\Documents\\Coding\\GitHub\\PointOfSalesMod\\src\\generated\\resources
 --existing
-"C:\\Users\\andre\\OneDrive\\Documents\\Github Repos\\src\\main\\resources"
+C:\\Users\\andre\\Documents\\Coding\\GitHub\\PointOfSalesMod\\src\\main\\resources
