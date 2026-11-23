@@ -1,0 +1,18 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\com",
+    "\\src\\main\\java\\com\\reverentworlds",
+    "\\src\\main\\java\\com\\reverentworlds\\posdelight",
+    "\\src\\main\\java\\com\\reverentworlds\\posdelight\\block",
+    "\\src\\main\\resources",
+    "\\src\\main\\resources\\assets",
+    "\\src\\main\\resources\\assets\\posdelight",
+    "\\src\\main\\resources\\assets\\posdelight\\blockstates"
+  ],
+  "SelectedNode": "\\src\\main\\resources\\assets\\posdelight\\blockstates\\cash_register.json",
+  "PreviewInSolutionExplorer": false
+}

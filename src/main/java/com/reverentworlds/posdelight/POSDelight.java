@@ -3,6 +3,8 @@ package com.reverentworlds.posdelight;
 import com.mojang.logging.LogUtils;
 import com.reverentworlds.posdelight.block.CashRegisterBlock;
 import com.reverentworlds.posdelight.block.CashRegisterBlockItem;
+import com.reverentworlds.posdelight.block.VendingMachineBlock;
+import com.reverentworlds.posdelight.entity.ModBlockEntities;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -55,11 +57,19 @@ public class POSDelight {
                     .strength(2.0f)
                     .sound(SoundType.METAL)
                     .noOcclusion()));
+    public static final DeferredBlock<VendingMachineBlock> VENDING_MACHINE = BLOCKS.register("vending_machine",
+            () -> new VendingMachineBlock(BlockBehaviour.Properties.of()
+                    .strength(2.0f)
+                    .sound(SoundType.METAL)
+                    .noOcclusion()));
+
 
     // INSERT CUSTOM ITEMS HERE : Creates a new BlockItem with the id "posdelight:example_block", combining the namespace and path
     public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
     public static final DeferredItem<CashRegisterBlockItem> CASH_REGISTER_ITEM = ITEMS.register("cash_register",
             () -> new CashRegisterBlockItem(CASH_REGISTER.get(), new Item.Properties()));
+    public static final DeferredItem<BlockItem> VENDING_MACHINE_ITEM = ITEMS.register("vending_machine",
+            () -> new BlockItem(VENDING_MACHINE.get(), new Item.Properties()));
 
     // Creates a new food item with the id "posdelight:example_id", nutrition 1 and saturation 2
     public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
@@ -84,6 +94,8 @@ public class POSDelight {
         BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ITEMS.register(modEventBus);
+        // Registering the mod block entities so block entities get registered
+        ModBlockEntities.register(modEventBus); // <-- Add this line!
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
 
@@ -119,6 +131,9 @@ public class POSDelight {
         }
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(CASH_REGISTER_ITEM);
+        }
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(VENDING_MACHINE_ITEM);
         }
     }
 
