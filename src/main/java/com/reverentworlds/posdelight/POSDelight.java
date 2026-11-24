@@ -31,6 +31,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import com.reverentworlds.posdelight.recipe.ModRecipes;
 import org.slf4j.Logger;
 
 // Insert custom blocks/item imports here

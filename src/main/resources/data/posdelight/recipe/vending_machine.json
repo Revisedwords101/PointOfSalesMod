@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "#P#",
+    "GCB",
+    "#R#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:iron_block"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "G": {
+      "tag": "c:glass_panes"
+    },
+    "C": {
+      "tag": "c:chests"
+    },
+    "B": {
+      "tag": "minecraft:buttons"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "posdelight:vending_machine"
+  }
+}

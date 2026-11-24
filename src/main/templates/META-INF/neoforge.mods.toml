@@ -49,6 +49,12 @@ description='''
 POS (Point of sales) delight mod offers the ability for users to sell villagers food! Inspired by the Restaurant Manager mod by Yousra_mods and Cozy Cafe mod by Chakyl, I aimed to make a more vanilla-type mod that allows users to sell items and food in a restaurant, take-out, or convenience store. I also aim to use zero generative AI for all the art in the mod.
 '''
 
+
+# The [[mod-resources]] block allows you to declare where your resource files are located.
+[[mod-resources]] #mandatory
+    base="assets"
+    modid="${mod_id}"
+
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
 #[[mixins]]
 #config="${mod_id}.mixins.json"
