@@ -4,6 +4,7 @@ import com.reverentworlds.posdelight.POSDelight;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
+
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -18,7 +19,11 @@ public class ModBlockEntities {
                             VendingMachineBlockEntity::new, POSDelight.VENDING_MACHINE.get()
                     ).build(null));
 
+    
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
+        // Note: Container menus are now registered via MenuProvider on BlockEntity,
+        // not through the CONTAINERS DeferredRegister.
     }
 }

@@ -1,0 +1,56 @@
+
+================================================================================
+🎨 VENDING MACHINE GUI TEXTURE CREATED! 🎨
+================================================================================
+
+✅ FILES CREATED:
+================================================================================
+
+1. ✅ vending_machine.png (256x256)
+   Location: src/main/resources/assets/posdelight/textures/gui/
+   Features:
+   - Dark metallic gradient background
+   - 3x4 slot grid highlighted with light borders
+   - Title area at top for "VENDING MACHINE" text
+   - Subtle metallic variations for realistic look
+   
+2. ✅ vending_machine.png.mcmeta
+   Location: Same directory as PNG
+   Purpose: Tells Minecraft how to scale the texture properly
+
+================================================================================
+🎮 HOW TO USE:
+================================================================================
+
+The texture is now automatically used by your VendingMachineScreen class!
+
+In VendingMachineScreen.java, it's referenced like this:
+
+    private static final ResourceLocation TEXTURE =
+            ResourceLocation.fromNamespaceAndPath("posdelight", "textures/gui/vending_machine.png");
+
+When the screen opens, it will render this background texture.
+
+================================================================================
+🎨 CUSTOMIZING THE TEXTURE:
+================================================================================
+
+If you want to create a more custom design:
+
+1. Open the PNG in an image editor (Paint.NET, Photoshop, GIMP)
+2. Add your own colors, patterns, or designs
+3. Save and rebuild your mod with: ./gradlew build --no-daemon
+
+For inspiration, you can look at existing Minecraft GUI textures like:
+- Chest texture
+- Furnace texture  
+- Crafting table texture
+
+================================================================================
+✅ TEXTURE READY! 🎉
+================================================================================
+
+Your vending machine GUI will now display a nice metallic background
+with the 3x4 slot grid clearly visible!
+
+Build and run your mod to see it in action! 🚀

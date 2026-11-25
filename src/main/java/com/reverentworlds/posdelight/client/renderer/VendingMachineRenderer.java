@@ -5,11 +5,14 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.reverentworlds.posdelight.client.model.VendingMachineModel;
 import com.reverentworlds.posdelight.entity.VendingMachineBlockEntity;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 
 public class VendingMachineRenderer implements BlockEntityRenderer<VendingMachineBlockEntity> {
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
@@ -35,4 +38,6 @@ public class VendingMachineRenderer implements BlockEntityRenderer<VendingMachin
 
         poseStack.popPose();
     }
+
+
 }

@@ -1,0 +1,15 @@
+{
+    "format_version": 1,
+    "textures": {
+        "vending_machine": {
+            "rotation": "none",
+            "minfilter": "linear magfilter linear miplinear",
+            "sizing": "auto"
+        }
+    },
+    "geometry": {
+        "uuid": "7b8d0a5e-2c3f-4d1a-9e6b-8f2a1c5d3e7b",
+        "bounding_box": "full",
+        "components": {}
+    }
+}

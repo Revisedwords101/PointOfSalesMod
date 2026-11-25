@@ -53,7 +53,6 @@ POS (Point of sales) delight mod offers the ability for users to sell villagers 
 # The [[mod-resources]] block allows you to declare where your resource files are located.
 [[mod-resources]] #mandatory
     base="assets"
-    modid="${mod_id}"
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
 #[[mixins]]

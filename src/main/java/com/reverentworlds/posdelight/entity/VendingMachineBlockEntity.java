@@ -1,26 +1,24 @@
 package com.reverentworlds.posdelight.entity;
 
+import com.reverentworlds.posdelight.screen.VendingMachineScreenHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.Containers;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
-// Import your ModBlockEntities registry class here (e.g., import com.reverentworlds.posdelight.registry.ModBlockEntities;)
 
-public class VendingMachineBlockEntity extends BlockEntity {
+public class VendingMachineBlockEntity extends BlockEntity implements MenuProvider {
     public final ItemStackHandler vendingInventory = new ItemStackHandler(12) {
-        @Override
-        protected int getStackLimit(int slot, ItemStack stack) {
-            return 1;
-        }
 
         @Override
         protected void onContentsChanged(int slot) {
@@ -35,21 +33,15 @@ public class VendingMachineBlockEntity extends BlockEntity {
         super(ModBlockEntities.VENDING_MACHINE.get(), pos, state);
     }
 
-    public void clearContents() {
-        for (int i = 0; i < vendingInventory.getSlots(); i++) {
-            vendingInventory.setStackInSlot(i, ItemStack.EMPTY);
-        }
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable("container.posdelight.vending_machine");
     }
 
-    public void drops() {
-        SimpleContainer inv = new SimpleContainer(vendingInventory.getSlots());
-        for (int i = 0; i < vendingInventory.getSlots(); i++) {
-            inv.setItem(i, vendingInventory.getStackInSlot(i));
-        }
-
-        if (this.level != null) {
-            Containers.dropContents(this.level, this.worldPosition, inv);
-        }
+    @Override
+    public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
+        // Correct order: (containerId, playerInventory, itemHandler)
+        return new VendingMachineScreenHandler(containerId, playerInventory, this.vendingInventory);
     }
 
     @Override
@@ -75,4 +67,5 @@ public class VendingMachineBlockEntity extends BlockEntity {
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
+
 }

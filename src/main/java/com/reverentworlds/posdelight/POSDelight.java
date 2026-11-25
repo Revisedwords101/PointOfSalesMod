@@ -31,6 +31,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
 import com.reverentworlds.posdelight.recipe.ModRecipes;
 import org.slf4j.Logger;
 
@@ -97,8 +98,14 @@ public class POSDelight {
         ITEMS.register(modEventBus);
         // Registering the mod block entities so block entities get registered
         ModBlockEntities.register(modEventBus); // <-- Add this line!
+
+        // Note: Container menus are now registered via MenuProvider on BlockEntity,
+        // not through IContainerProvider. The CONTAINERS DeferredRegister is no longer needed.
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
+        
+        // Register menu types for NeoForge 1.21.1 GUI system
+        com.reverentworlds.posdelight.menu.ModMenuTypes.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (POSDelight) to respond directly to events.
